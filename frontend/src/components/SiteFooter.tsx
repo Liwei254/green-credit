@@ -1,3 +1,5 @@
+import { Instagram, Twitter } from "lucide-react";
+
 export default function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-[#0D1117]/60">
@@ -10,8 +12,15 @@ export default function SiteFooter() {
             <a className="hover:text-white" href="https://moonbeam.network/" target="_blank" rel="noreferrer">🌙 Moonbeam</a>
             <a className="hover:text-white" href="https://github.com/Liwei254/green-credits" target="_blank" rel="noreferrer">📦 Github</a>
             <a className="hover:text-white" href="https://github.com/Liwei254/green-credits#readme" target="_blank" rel="noreferrer">📚 Docs</a>
-            <a className="hover:text-white" href="https://www.instagram.com/greencredit.xyz/" target="_blank" rel="noreferrer">📷 Instagram</a>
+            <a className="hover:text-white flex items-center gap-1" href="https://www.instagram.com/greencredit.xyz/" target="_blank" rel="noreferrer">
+              <Instagram size={16} />
+              Instagram
+            </a>
             <a className="hover:text-white" href="https://polkadot.network" target="_blank" rel="noopener noreferrer"> 🔗 Polkadot</a>
+            <a className="hover:text-white flex items-center gap-1" href="https://x.com/greencreditxyz" target="_blank" rel="noreferrer">
+              <Twitter size={16} />
+              X
+            </a>
           </div>
         </div>
       </div>
