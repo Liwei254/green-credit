@@ -24,7 +24,8 @@ export default function Home({ provider, address, setAddress, theme, toggleTheme
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col 
+bg-gradient-to-br from-gray-900 via-green-950 to-gray-800">
       <main className="flex-1 flex flex-col">
         <div className="flex-1 flex items-center justify-center px-4">
           <div className="w-full max-w-6xl mx-auto">
