@@ -10,6 +10,7 @@ export default function SiteFooter() {
             <a className="hover:text-white" href="https://moonbeam.network/" target="_blank" rel="noreferrer">🌙 Moonbeam</a>
             <a className="hover:text-white" href="https://github.com/Liwei254/green-credits" target="_blank" rel="noreferrer">📦 Github</a>
             <a className="hover:text-white" href="https://github.com/Liwei254/green-credits#readme" target="_blank" rel="noreferrer">📘 Docs</a>
+            <a className="hover:text-white" href="https://www.instagram.com/greencredit.xyz/" target="_blank" rel="noreferrer">📷 Instagram</a>
           </div>
         </div>
       </div>
