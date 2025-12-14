@@ -39,6 +39,7 @@ function getInjectedProvider(): any {
 
 const App = () => {
   const [provider, setProvider] = useState<PatchedBrowserProvider | null>(null);
+  const [signer, setSigner] = useState<any>(null);
   const [address, setAddress] = useState<string>("");
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [isDemoMode, setIsDemoMode] = useState<boolean>(false);
@@ -69,6 +70,11 @@ const App = () => {
       setShowWalkthrough(true);
     }
   }, []);
+
+  const handleConnect = (provider: PatchedBrowserProvider, signer: any) => {
+    setProvider(provider);
+    setSigner(signer);
+  };
 
   const connected = !!address && !!provider;
 
@@ -108,6 +114,7 @@ const App = () => {
       const fresh = new PatchedBrowserProvider(ethereum);
       const signer = await fresh.getSigner();
       const addr = await signer.getAddress();
+      setProvider(fresh);
       setAddress(addr);
     } catch (err: any) {
       console.error(err);
@@ -131,6 +138,7 @@ const App = () => {
             address={address}
             setAddress={setAddress}
             setProvider={setProvider}
+            onConnect={handleConnect}
             isDemoMode={isDemoMode}
             setIsDemoMode={setIsDemoMode}
           />
@@ -167,7 +175,7 @@ const App = () => {
             path="/dashboard"
             element={
               connected ? (
-                <Dashboard provider={provider!} address={address} />
+                <Dashboard provider={provider!} address={address} signer={signer!} />
               ) : (
                 <Navigate to="/" replace />
               )
@@ -176,7 +184,7 @@ const App = () => {
           <Route
             path="/submit"
             element={
-              connected ? <SubmitAction provider={provider!} /> : <Navigate to="/" replace />
+              connected ? <SubmitAction /> : <Navigate to="/" replace />
             }
           />
           <Route
@@ -249,38 +257,7 @@ const App = () => {
         </Routes>
       </main>
 
-      {/* Footer */}
-      <footer className="footer text-center py-8">
-        <p className="text-gray-600 mb-4">
-          © 2024 Green Credits. Building a sustainable future on Moonbeam.
-        </p>
-        <div className="footer-links flex justify-center gap-6">
-          <a
-            href="https://moonbeam.network"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            🌙 Moonbeam
-          </a>
-          <a
-            href="https://polkadot.network"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            🔗 Polkadot
-          </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-            💻 GitHub
-          </a>
-          <a
-            href="https://docs.moonbeam.network"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            📚 Docs
-          </a>
-        </div>
-      </footer>
+
 
       {/* Walkthrough Modal */}
       {showWalkthrough && (
