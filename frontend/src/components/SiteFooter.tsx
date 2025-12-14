@@ -47,17 +47,18 @@ export default function SiteFooter() {
               Docs
             </FooterLink>
 
-            <FooterLink href="https://www.instagram.com/greencredit.xyz/" icon={Instagram}>
-              Instagram
-            </FooterLink>
-
             <FooterLink href="https://polkadot.network" icon={LinkIcon}>
               Polkadot
+            </FooterLink>
+
+            <FooterLink href="https://www.instagram.com/greencredit.xyz/" icon={Instagram}>
+              Instagram
             </FooterLink>
 
             <FooterLink href="https://x.com/greencreditxyz" icon={Twitter}>
               X
             </FooterLink>
+
           </div>
         </div>
       </div>
