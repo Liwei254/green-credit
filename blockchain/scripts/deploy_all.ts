@@ -1,5 +1,6 @@
 import { ethers } from "hardhat";
 
+
 // 🔧 Temporary patch for Hardhat provider (avoids ENS lookups)
 (ethers.provider as any).resolveName = async (name: string) => {
   // If it's already an address, return it
@@ -50,9 +51,25 @@ async function main() {
   const tokenAddress = await token.getAddress();
   console.log("✅ GreenCreditToken deployed to:", tokenAddress);
 
+// Deploy Mock Stablecoin (for EcoActionVerifier)
+const MockERC20 = await ethers.getContractFactory("MockERC20");
+
+const stablecoin = await MockERC20.deploy(
+  "Mock USD",
+  "mUSD",
+  6, // USDC-style decimals (recommended)
+  ethers.parseUnits("1000000", 6) // 1,000,000 mock USDC
+);
+
+await stablecoin.waitForDeployment();
+const stablecoinAddress = await stablecoin.getAddress();
+console.log("✅ Mock Stablecoin deployed to:", stablecoinAddress);
+
+
+
   // Deploy EcoActionVerifier
   const Verifier = await ethers.getContractFactory("EcoActionVerifier");
-  const verifier = await Verifier.deploy(tokenAddress);
+  const verifier = await Verifier.deploy(stablecoinAddress,tokenAddress);
   await verifier.waitForDeployment();
   const verifierAddress = await verifier.getAddress();
   console.log("✅ EcoActionVerifier deployed to:", verifierAddress);
